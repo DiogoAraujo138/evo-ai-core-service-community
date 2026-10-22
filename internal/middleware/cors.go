@@ -45,6 +45,10 @@ func CORSConfig(evolutionBaseURL string) *corsConfig {
 		AllowedHeaders: []string{
 			"Origin", "Content-Type", "Content-Length", "Accept-Encoding",
 			"X-CSRF-Token", "Authorization", "api_access_token", "X-Requested-With",
+			// The browser sends the active company on every Core call. Without
+			// this name in the preflight answer, the save never leaves the page
+			// (API keys, agents, folders).
+			"X-Evo-Tenant-Id",
 		},
 		ExposedHeaders: []string{
 			"Content-Length", "Authorization",
